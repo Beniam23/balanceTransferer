@@ -36,7 +36,6 @@ public class userTest {
 	public void Add2AccountToUser_ExpectedNumberOfUserAccount2() {
 		biniam.addAccount(AccountType.CLASSIC, 100);
 		biniam.addAccount(AccountType.SAVING, 100);
-		//System.out.println(biniam.getAccounts().size());
 		assertEquals(2,biniam.getAccounts().size());
 	}
 	
