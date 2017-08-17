@@ -33,10 +33,18 @@ public class User {
 		return Name;
 	}
 
+	public void setName(String name) {
+		this.Name = name;
+	}
+	
 	public String getAddress() {
 		return Address;
 	}
 
+	public void setAddress(String address) {
+		this.Address = address;
+	}
+	
 	public List<Account> getAccounts() {
 		return accounts;
 	}
@@ -63,5 +71,9 @@ public class User {
 	public String toString() {
 		return "user [Id=" + Id + ", Name=" + Name + ", Address=" + Address + "]";
 	}
+
+	
+
+	
 
 }

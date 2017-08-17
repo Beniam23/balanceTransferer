@@ -1,4 +1,4 @@
-package org.revolute.balanceTransfer;
+package org.revolute.main;
 
 import junit.framework.Test;
 import junit.framework.TestCase;

@@ -25,7 +25,6 @@ public class userTest {
 		
 	}
 	
-	//TODO add account to user
 	@Test
 	public void Add1AccountToUser_ExpectedNumberOfUserAccount1() {
 		biniam.addAccount(AccountType.CLASSIC, 100);
