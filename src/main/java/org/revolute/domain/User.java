@@ -57,14 +57,20 @@ public class User {
 		this.accounts.add(account);
 	}
 	
-	public void addAccount(AccountType accountType, double amount) {	
+	public Account addAccount(AccountType accountType, double amount) {	
+		Account account = null;
+		
 		switch(accountType) {
 			case SAVING:
-				this.addAccount(new SavingAccount(getId() + "SavingAccount",amount));
+				account = new SavingAccount(getId() + "SavingAccount",amount);
+				this.addAccount(account);
 				break;
 			case CLASSIC:
-				this.addAccount(new ClassicAccount(getId() + "ClassicAccount",amount));	
+				account = new ClassicAccount(getId() + "ClassicAccount",amount);
+				this.addAccount(account);	
 		}
+		
+		return account;
 	}
 	
 	@Override

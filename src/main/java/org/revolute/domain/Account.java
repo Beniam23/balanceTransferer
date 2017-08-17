@@ -7,6 +7,8 @@ package org.revolute.domain;
  * */
 public interface Account {
 	
+	public String getId();
+	
 	/**
 	 * @param double amount 
 	 * */

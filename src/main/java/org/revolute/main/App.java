@@ -1,9 +1,10 @@
 package org.revolute.main;
 
+import org.revolute.controller.AccountController;
 import org.revolute.controller.UserController;
+import org.revolute.domain.AccountType;
+import org.revolute.domain.User;
 import org.revolute.service.UserService;
-
-import com.google.gson.Gson;
 
 public class App 
 {
@@ -13,14 +14,23 @@ public class App
     	
     		UserService userService = new UserService();
     		
-    		userService.addUser(userService.createUser("biniam" , "London"));
-    		userService.addUser(userService.createUser("daniel" , "NewYork"));
+    		User biniam = userService.createUser("biniam" , "London");
+    		biniam.addAccount(AccountType.SAVING,100000.00);
+    		biniam.addAccount(AccountType.CLASSIC,1000.00);
+    		userService.addUser(biniam);
     		
-    		Gson gson = new Gson();
+    		User poorDaniel = userService.createUser("daniel" , "NewYork");
+    		poorDaniel.addAccount(AccountType.SAVING,0.00);
+    		poorDaniel.addAccount(AccountType.CLASSIC,100.00);
+    		userService.addUser(poorDaniel);
+ 
+    		
+    		/*Gson gson = new Gson();
         String json = gson.toJson(userService.getAllUsers());
-        System.out.println(json);
+        System.out.println(json);*/
     		
     		new UserController(userService);
+    		new AccountController(userService);
     	
     		//get("/hello", (req, res) -> "Hello World");
     	

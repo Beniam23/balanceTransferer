@@ -16,7 +16,7 @@ public class ClassicAccount implements Account{
 	/**
 	 * @return the accountId
 	 */
-	public String getAccountId() {
+	public String getId() {
 		return AccountId;
 	}
 

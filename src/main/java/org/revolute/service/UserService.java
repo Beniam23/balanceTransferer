@@ -4,23 +4,32 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+import org.revolute.domain.Account;
 import org.revolute.domain.User;
 
 public class UserService {
 	
 	List<User> users = new ArrayList<User>(); 
 	
-	public UserService() {
-		
-	}
-	
 	public List<User> getAllUsers() {
 		return users;
 	}
    
+	public List<Account> getAllUsersAccounts(){
+		List<Account> allUsersAccounts = new ArrayList<Account>() ;
+		for(User user: users) {
+			allUsersAccounts.addAll(user.getAccounts());
+		}
+		
+		return allUsersAccounts;
+	}
+	
 	public User getUser(String id) {
 		Optional<User> options = users.stream().filter(user -> user.getId().equals(id)).findFirst();
-	    return options.get();
+		if(options.isPresent())
+			return options.get();
+	
+		return null;
 	}
 	 
 	public void addUser(User user) {
@@ -38,6 +47,16 @@ public class UserService {
 			userToUpdate.setAddress(address);
 		}
 		return userToUpdate;
+	}
+
+	public Account getAccount(String accountId) {
+		
+		for(Account account: getAllUsersAccounts()) {
+			if(account.getId().equals(accountId))
+				return account;
+		}
+		
+		return null;
 	}
 	
 }

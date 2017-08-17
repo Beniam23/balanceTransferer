@@ -3,6 +3,8 @@ package org.revolute.service;
 import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.Test;
+import org.revolute.domain.Account;
+import org.revolute.domain.AccountType;
 import org.revolute.domain.User;
 
 public class UserServiceTest {
@@ -33,6 +35,37 @@ public class UserServiceTest {
 		
 		assertEquals("daniel", user.getName());
 		assertEquals("Newyork", user.getAddress());
+	}
+	
+	@Test
+	public void Add2UserWith2AccountEach_ExpectedNumberOfAccounts4() {
+		User biniam = userService.createUser("biniam" , "London");
+		biniam.addAccount(AccountType.SAVING,100000.00);
+		biniam.addAccount(AccountType.CLASSIC,1000.00);
+		userService.addUser(biniam);
+		
+		User poorDaniel = userService.createUser("daniel" , "NewYork");
+		poorDaniel.addAccount(AccountType.SAVING,0.00);
+		poorDaniel.addAccount(AccountType.CLASSIC,100.00);
+		userService.addUser(poorDaniel);
+		
+		assertEquals(4,userService.getAllUsersAccounts().size());
+	}
+	
+	@Test
+	public void getAccount_ExpectedBiniamSavingAccount() {
+		
+		User biniam = userService.createUser("biniam" , "London");
+		Account biniamSavingAccount = biniam.addAccount(AccountType.SAVING,100000.00);
+		biniam.addAccount(AccountType.CLASSIC,1000.00);
+		userService.addUser(biniam);
+		
+		User poorDaniel = userService.createUser("daniel" , "NewYork");
+		poorDaniel.addAccount(AccountType.SAVING,0.00);
+		poorDaniel.addAccount(AccountType.CLASSIC,100.00);
+		userService.addUser(poorDaniel);
+		
+		assertEquals(biniamSavingAccount,userService.getAccount(biniam.getId() + "SavingAccount"));
 	}
 	
 	
