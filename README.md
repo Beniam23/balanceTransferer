@@ -11,6 +11,14 @@ RESTful API solution for money transfers between internal users/accounts.
 
 ### Running the Application###
 ------------------------------------------------------------------------------- 
+* clone project 
+* open project from your IDE
+* Maven -> update project 
+* run project
+
+or else
+
+* you can simply run the jar file provided on Terminal or CMD :- `java -jar jarFile.jar` 
 
 # Author
 - Biniam Gebreyesus (beniam23@gmail.com)
