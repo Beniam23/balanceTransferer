@@ -1,7 +1,12 @@
 package org.revolute.domain;
 
-import org.revolute.exception.ActionProhabitedException;
+import org.revolute.exception.ActionProhibitedException;
 
+/**
+ * @author BINIAM GEBREYESUS	
+ * @since 16/08/17 
+ * @version 1.0 
+ * */
 public class SavingAccount implements Account{
 
 	 private String AccountId;
@@ -45,11 +50,11 @@ public class SavingAccount implements Account{
 		this.balance +=amount;
 	}
 
-	public void withdraw(double amount) throws ActionProhabitedException{
-		throw new ActionProhabitedException();
+	public void withdraw(double amount) throws ActionProhibitedException{
+		throw new ActionProhibitedException();
 	}
 
-	public void transfer(double amount, Account account) throws ActionProhabitedException{
+	public void transfer(double amount, Account account) throws ActionProhibitedException{
 		withdraw(amount);
 		account.deposit(amount);
 	}

@@ -4,7 +4,7 @@ import static org.junit.Assert.*;
 
 import org.junit.Before;
 import org.junit.Test;
-import org.revolute.exception.ActionProhabitedException;
+import org.revolute.exception.ActionProhibitedException;
 import org.revolute.exception.InsufficientBalanceException;
 
 public class AccountTest {
@@ -31,7 +31,7 @@ public class AccountTest {
 	}
 
 	
-	@Test(expected = ActionProhabitedException.class)
+	@Test(expected = ActionProhibitedException.class)
 	public void WithDrawing50FromSavingAccount_ExpectedToThrowException() throws Exception {
 		savingAccount.withdraw(50);
 	}
@@ -92,7 +92,7 @@ public class AccountTest {
 		
 	}
 	
-	@Test(expected = ActionProhabitedException.class)
+	@Test(expected = ActionProhibitedException.class)
 	public void Transfer100ToClassicAccountFromSavingAccount_ExpectedToThrowException() throws Exception {
 			savingAccount.transfer(100, classicAccount);
 	}

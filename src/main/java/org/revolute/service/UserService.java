@@ -7,6 +7,11 @@ import java.util.Optional;
 import org.revolute.domain.Account;
 import org.revolute.domain.User;
 
+/**
+ * @author BINIAM GEBREYESUS	
+ * @since 16/08/17 
+ * @version 1.0 
+ * */
 public class UserService {
 	
 	List<User> users = new ArrayList<User>(); 
@@ -36,6 +41,10 @@ public class UserService {
 		this.users.add(user);
 	}
 	
+	public void deleteUser(String id) {
+		users.remove(getUser(id));
+	}
+	
 	public User createUser(String name, String address) {
 		return new User(name+"Id", name, address);
 	}
@@ -50,7 +59,7 @@ public class UserService {
 	}
 
 	public Account getAccount(String accountId) {
-		
+
 		for(Account account: getAllUsersAccounts()) {
 			if(account.getId().equals(accountId))
 				return account;

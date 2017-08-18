@@ -1,4 +1,4 @@
-package org.revolute.main;
+package org.revolute;
 
 import junit.framework.Test;
 import junit.framework.TestCase;

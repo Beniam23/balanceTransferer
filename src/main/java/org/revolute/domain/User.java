@@ -1,8 +1,13 @@
 package org.revolute.domain;
 
 import java.util.ArrayList;
-import java.util.List;
 
+import java.util.List;
+/**
+ * @author BINIAM GEBREYESUS	
+ * @since 16/08/17 
+ * @version 1.0 
+ * */
 public class User {
 	
 	private String Id ;
@@ -57,6 +62,10 @@ public class User {
 		this.accounts.add(account);
 	}
 	
+	/**
+	 * @param enum AccountType
+	 * @param double amount
+	 * @return Account newly created Account*/
 	public Account addAccount(AccountType accountType, double amount) {	
 		Account account = null;
 		

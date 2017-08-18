@@ -1,4 +1,4 @@
-package org.revolute.main;
+package org.revolute;
 
 import org.revolute.controller.AccountController;
 import org.revolute.controller.UserController;
@@ -6,12 +6,17 @@ import org.revolute.domain.AccountType;
 import org.revolute.domain.User;
 import org.revolute.service.UserService;
 
+/**
+ * @author BINIAM GEBREYESUS	
+ * @since 16/08/17 
+ * @version 1.0 
+ * */
 public class App 
 {
 	
     public static void main( String[] args )
     {
-    	
+		
     		UserService userService = new UserService();
     		
     		User biniam = userService.createUser("biniam" , "London");
@@ -24,22 +29,8 @@ public class App
     		poorDaniel.addAccount(AccountType.CLASSIC,100.00);
     		userService.addUser(poorDaniel);
  
-    		
-    		/*Gson gson = new Gson();
-        String json = gson.toJson(userService.getAllUsers());
-        System.out.println(json);*/
-    		
     		new UserController(userService);
     		new AccountController(userService);
     	
-    		//get("/hello", (req, res) -> "Hello World");
-    	
-    	 	/*get(new Route("/users/:id") {
-         
-    	 		@Override
-    	 		public Object handle(Request request, Response response) {
-    	 			return  "User: username=test, email=test@test.net";
-    	 		}     
-    	 	});*/
     }
 }

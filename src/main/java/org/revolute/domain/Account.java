@@ -2,7 +2,7 @@ package org.revolute.domain;
 
 /**
  * @author BINIAM GEBREYESUS	
- * @since 15/08/17 
+ * @since 16/08/17 
  * @version 1.0 
  * */
 public interface Account {
@@ -22,7 +22,8 @@ public interface Account {
 	
 	/**
 	 * @param double amount
-	 * @throws InsufficientBalanceException
+	 * @param Object Account 
+	 * @throws InsufficientBalanceException and ActionProhibitedException
 	 * */
 	public void transfer(double amount, Account account) throws Exception;
 

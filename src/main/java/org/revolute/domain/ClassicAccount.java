@@ -2,6 +2,11 @@ package org.revolute.domain;
 
 import org.revolute.exception.InsufficientBalanceException;
 
+/**
+ * @author BINIAM GEBREYESUS	
+ * @since 16/08/17 
+ * @version 1.0 
+ * */
 public class ClassicAccount implements Account{
 
 	 private String AccountId;

@@ -1,8 +1,15 @@
 package org.revolute.util;
 
 import com.google.gson.Gson;
+import com.google.gson.JsonObject;
+
 import spark.ResponseTransformer;
 
+/**
+ * @author BINIAM GEBREYESUS	
+ * @since 17/08/17 
+ * @version 1.0 
+ * */
 public class JsonUtil {
 	 
 	  public static String toJson(Object object) {
