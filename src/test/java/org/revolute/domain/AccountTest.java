@@ -1,7 +1,7 @@
 package org.revolute.domain;
 
 import static org.junit.Assert.*;
-
+import java.time.LocalDateTime;
 import org.junit.Before;
 import org.junit.Test;
 import org.revolute.exception.ActionProhibitedException;
@@ -15,8 +15,8 @@ public class AccountTest {
 
 	@Before
 	public void beforeTest(){
-		classicAccount = new ClassicAccount("classicAccount1", 100);
-		savingAccount = new SavingAccount("savingAccount1", 100);
+		classicAccount = new ClassicAccount("classicAccount1", 100, LocalDateTime.now());
+		savingAccount = new SavingAccount("savingAccount1", 100, LocalDateTime.now());
 	}
 	
 	@Test
@@ -40,9 +40,11 @@ public class AccountTest {
 	@Test
 	public void Withdrawing50FromClassicAccount_ExpectedBalance50() {
 		try {
+			Thread.sleep(2000);
+			System.out.println(classicAccount.getLastModified());
 			classicAccount.withdraw(50);
 			assertEquals(50,((ClassicAccount) classicAccount).getBalance(),0.00);
-			
+			System.out.println(classicAccount.getLastModified());
 		} catch (Exception e) {
 			fail(e.getMessage());
 		}
@@ -81,7 +83,7 @@ public class AccountTest {
 	
 	@Test
 	public void Transfer100ToClassicAccountFromClassicAccount2_ExpectedClassicAccountBalance200ClassicAccount20() {
-		classicAccount2 = new ClassicAccount("classicAccount2", 100);
+		classicAccount2 = new ClassicAccount("classicAccount2", 100, LocalDateTime.now());
 		try {
 			classicAccount2.transfer(100, classicAccount);
 			assertEquals(200.00,((ClassicAccount) classicAccount).getBalance(),0.00);

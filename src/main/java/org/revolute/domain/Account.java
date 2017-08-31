@@ -1,5 +1,7 @@
 package org.revolute.domain;
 
+import java.time.LocalDateTime;
+
 /**
  * @author BINIAM GEBREYESUS	
  * @since 16/08/17 
@@ -7,7 +9,9 @@ package org.revolute.domain;
  * */
 public interface Account {
 	
-	public String getId();
+	
+	LocalDateTime getLastModified();
+	String getId();
 	
 	/**
 	 * @param double amount 

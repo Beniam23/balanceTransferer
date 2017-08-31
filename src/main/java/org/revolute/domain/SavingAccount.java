@@ -1,5 +1,6 @@
 package org.revolute.domain;
 
+import java.time.LocalDateTime;
 import org.revolute.exception.ActionProhibitedException;
 
 /**
@@ -9,13 +10,15 @@ import org.revolute.exception.ActionProhibitedException;
  * */
 public class SavingAccount implements Account{
 
-	 private String AccountId;
-	 private double balance;
+	private String AccountId;
+	private double balance;
+	private LocalDateTime lastModified;
 	
-	public SavingAccount(String accountId, double balance) {
+	public SavingAccount(String accountId, double balance, LocalDateTime lastModified) {
 		super();
 		AccountId = accountId;
 		this.balance = balance;
+		this.lastModified = lastModified;
 	}	
 
 	/**
@@ -38,16 +41,17 @@ public class SavingAccount implements Account{
 	public double getBalance() {
 		return balance;
 	}
-
+	
 	/**
-	 * @param balance the balance to set
+	 * @return the lastModified
 	 */
-	public void setBalance(double balance) {
-		this.balance = balance;
+	public LocalDateTime getLastModified() {
+		return lastModified;
 	}
 
 	public void deposit(double amount) {
 		this.balance +=amount;
+		this.lastModified = LocalDateTime.now();
 	}
 
 	public void withdraw(double amount) throws ActionProhibitedException{
@@ -57,6 +61,7 @@ public class SavingAccount implements Account{
 	public void transfer(double amount, Account account) throws ActionProhibitedException{
 		withdraw(amount);
 		account.deposit(amount);
+		this.lastModified = LocalDateTime.now();
 	}
 
 }

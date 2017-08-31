@@ -3,6 +3,8 @@ package org.revolute.controller;
 import static org.revolute.util.JsonUtil.json;
 import static spark.Spark.get;
 import static spark.Spark.post;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import org.revolute.domain.Account;
 import org.revolute.exception.ActionProhibitedException;
 import org.revolute.exception.InsufficientBalanceException;
@@ -15,6 +17,8 @@ import org.revolute.service.UserService;
  * */
 public class AccountController {
 
+	DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+	
 	public AccountController(final UserService userService) {
 		
 		/*
@@ -28,8 +32,11 @@ public class AccountController {
 		 * */
 		get("/account/:id", (req,res) -> {
 			Account account = userService.getAccount(req.params(":id"));
-			if(account!=null)
+			if(account!=null) {
+				res.header("Last-Modified", account.getLastModified().format(formatter));
 				return account;
+			}
+				
 			
 			res.status(400);
 			res.body("message : Account not found !!");
@@ -49,6 +56,32 @@ public class AccountController {
 		post("/account/transfer", (req , res) -> {
 			Account sender = userService.getAccount(req.queryParams("senderId"));
 			Account reciever = userService.getAccount(req.queryParams("recieverId"));
+			
+			req.headers().forEach(h -> System.out.println(h.toString()));
+			
+			//TODO check if both accounts are the same and return error
+			if(sender == reciever) {
+				res.status(412);
+				res.body("message : unable to modify data,");
+				return res.body();
+			}
+			
+			//TODO check if account has been modified 
+			LocalDateTime lastModified = LocalDateTime.parse(req.headers("If-Unmodified-Since"), formatter);
+			
+			if(lastModified==null) {
+				res.status(403);
+				res.body("message : Forbidden");
+				return res.body();
+			}
+			
+			System.out.println(lastModified + " : " + sender.getLastModified());
+			if(lastModified.equals(sender.getLastModified())) {
+				res.status(412);
+				res.body("message : unable to modify data, Please try again");
+				return res.body();
+			}
+			
 			
 			try {
 				double amount = Double.parseDouble(req.queryParams("amount"));

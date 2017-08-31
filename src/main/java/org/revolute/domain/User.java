@@ -1,7 +1,7 @@
 package org.revolute.domain;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
-
 import java.util.List;
 /**
  * @author BINIAM GEBREYESUS	
@@ -71,11 +71,11 @@ public class User {
 		
 		switch(accountType) {
 			case SAVING:
-				account = new SavingAccount(getId() + "SavingAccount",amount);
+				account = new SavingAccount(getId() + "SavingAccount",amount, LocalDateTime.now());
 				this.addAccount(account);
 				break;
 			case CLASSIC:
-				account = new ClassicAccount(getId() + "ClassicAccount",amount);
+				account = new ClassicAccount(getId() + "ClassicAccount",amount, LocalDateTime.now());
 				this.addAccount(account);	
 		}
 		
